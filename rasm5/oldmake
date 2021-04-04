@@ -1,0 +1,62 @@
+##Set flags and gcc variable for easier reading
+ASSIGNMENT = rasm5
+CC = g++
+FLAGS = -std=c++14 -Wall -g
+
+##These are the objects created
+HDR_1 = rasm5.h
+
+OBJ_1 = printMenu.o
+CPP_1 = printMenu.cpp
+
+OBJ_2 = utils.o
+CPP_2 = utils.cpp
+
+OBJ_3 = loadFile.o
+CPP_3 = loadFile.cpp
+
+OBJ_4 = cppSort.o
+CPP_4 = cppSort.cpp
+
+OBJ_5 = generator.o
+CPP_5 = generator.cpp
+
+OBJ_6 = asmSort.o
+CPP_6 = asmSort.cpp
+
+##The list of all project files
+PROJFILES = makefile $(ASSIGNMENT).cpp $(ASSIGNMENT).scr $(HDR_1) $(CPP_1) $(CPP_2) $(CPP_3) $(CPP_4) $(CPP_5) $(CPP_6) 
+
+##Definition for function "all"
+all: $(ASSIGNMENT)
+
+##Statement definition for compilation of objects into execution file
+$(ASSIGNMENT): $(ASSIGNMENT).cpp $(OBJ_1) $(OBJ_2) $(OBJ_3) $(OBJ_4) $(OBJ_5) $(OBJ_6)
+	$(CC) $(FLAGS) $(ASSIGNMENT).cpp -o $(ASSIGNMENT) $(OBJ_1) $(OBJ_2) $(OBJ_3) $(OBJ_4) $(OBJ_5) $(OBJ_6)
+
+##Define every object inside of project (This is OBJ_1)
+$(OBJ_1): $(CPP_1) $(HDR_1)
+	$(CC) $(FLAGS) -c $(CPP_1) -o $(OBJ_1)
+
+$(OBJ_2): $(CPP_2) $(HDR_2)
+	$(CC) $(FLAGS) -c $(CPP_2) -o $(OBJ_2)
+
+$(OBJ_3): $(CPP_3) $(HDR_3)
+	$(CC) $(FLAGS) -c $(CPP_3) -o $(OBJ_3)
+
+$(OBJ_4): $(CPP_4) $(HDR_4)
+	$(CC) $(FLAGS) -c $(CPP_4) -o $(OBJ_4)
+
+$(OBJ_5): $(CPP_5) $(HDR_5)
+	$(CC) $(FLAGS) -c $(CPP_5) -o $(OBJ_5)
+
+$(OBJ_6): $(CPP_6) $(HDR_5)
+	$(CC) $(FLAGS) -c $(CPP_6) -o $(OBJ_6)
+
+##Definition for function "clean"
+clean:
+	rm *.o $(ASSIGNMENT) $(ASSIGNMENT).tar output.txt c_output.txt a_output.txt
+
+##Definition for function "tar"
+tar:
+	tar cf $(ASSIGNMENT).tar $(PROJFILES)
